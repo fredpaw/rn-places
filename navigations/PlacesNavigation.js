@@ -41,7 +41,13 @@ const PlacesNavigator = ({ navigation }) => {
             ),
           })}
         />
-        <PlacesStack.Screen name="PlaceDetail" component={PlaceDetailScreen} />
+        <PlacesStack.Screen
+          name="PlaceDetail"
+          component={PlaceDetailScreen}
+          options={({ route }) => ({
+            headerTitle: route.params.placeTitle,
+          })}
+        />
         <PlacesStack.Screen name="NewPlace" component={NewPlaceScreen} />
         <PlacesStack.Screen name="Map" component={MapScreen} />
       </PlacesStack.Navigator>
