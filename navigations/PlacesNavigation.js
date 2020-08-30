@@ -13,7 +13,7 @@ import HeaderButton from "../components/HeaderButton";
 
 const PlacesStack = createStackNavigator();
 
-const PlacesNavigator = ({ navigation }) => {
+const PlacesNavigator = () => {
   return (
     <NavigationContainer>
       <PlacesStack.Navigator
