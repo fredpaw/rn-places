@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import { StyleSheet, FlatList } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 
 import PlaceItem from "../components/PlaceItem";
@@ -21,7 +21,7 @@ const PlacesListScreen = ({ navigation }) => {
         <PlaceItem
           image={itemData.item.imageUri}
           title={itemData.item.title}
-          address={null}
+          address={itemData.item.address}
           onSelect={() => {
             navigation.navigate("PlaceDetail", {
               placeTitle: itemData.item.title,

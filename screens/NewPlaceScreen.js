@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import {
   ScrollView,
   View,
@@ -12,10 +12,12 @@ import { useDispatch } from "react-redux";
 import Colors from "../constants/Colors";
 import { addPlace } from "../store/places-actions";
 import ImagePicker from "../components/ImgPicker";
+import LocationPicker from "../components/LocationPicker";
 
-const NewPlaceScreen = ({ navigation }) => {
+const NewPlaceScreen = ({ navigation, route }) => {
   const [titleValue, setTitleValue] = useState("");
   const [selectedImage, setSelectedImage] = useState();
+  const [selectedLocation, setSelectedLocation] = useState();
 
   const dispatch = useDispatch();
 
@@ -28,8 +30,12 @@ const NewPlaceScreen = ({ navigation }) => {
     setSelectedImage(imagePath);
   };
 
+  const locationPickedHandler = (location) => {
+    setSelectedLocation(location);
+  };
+
   const savePlaceHandler = () => {
-    dispatch(addPlace(titleValue, selectedImage));
+    dispatch(addPlace(titleValue, selectedImage, selectedLocation));
     navigation.goBack();
   };
 
@@ -43,6 +49,11 @@ const NewPlaceScreen = ({ navigation }) => {
           value={titleValue}
         />
         <ImagePicker onImageTaken={imageTakenHandler} />
+        <LocationPicker
+          navigation={navigation}
+          route={route}
+          onLocationPicked={locationPickedHandler}
+        />
         <Button
           title="Save Place"
           color={Colors.primary}
